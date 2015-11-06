@@ -1,48 +1,214 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+        <link href="@Url.Content("~/Content/CSS/style.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/CSS/form.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/CSS/megamenu.css")" rel="stylesheet" type="text/css" />
+        <script src="@Url.Content("~/Scripts/Practice_Scripts/jquery1.min.js")" type="text/javascript"></script> 
+        <script src="@Url.Content("~/Scripts/Practice_Scripts/megamenu.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/Practice_Scripts/jquery.easydropdown.js")" type="text/javascript"></script>
+        <link href="@Url.Content("~/Content/CSS/default.css")" rel="stylesheet" type="text/css"/>
+        <link href="@Url.Content("~/Content/CSS/nivo-slider.css")" rel="stylesheet" type="text/css"/>
+        <script src="@Url.Content("~/Scripts/Practice_Scripts/jquery.nivo.slider.js")"></script>
+        <script type="text/javascript">
+            $(window).load(function () {
+                $('#slider').nivoSlider();
+            });
+        </script>
+        <script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>
     </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        <body>
+            <div class="header-top">
+                <div class="wrap">
+                    <div class="header-top-left">
+                        <div class="box">
+                            <select tabindex="4" class="dropdown">
+                                <option value="" class="label" value="">Language :</option>
+                                <option value="1">English</option>
+                                <option value="2">French</option>
+                                <option value="3">German</option>
+                            </select>
+                        </div>
+                        <div class="box1">
+                            <select tabindex="4" class="dropdown">
+                                <option value="" class="label" value="">Currency :</option>
+                                <option value="1">$ Dollar</option>
+                                <option value="2">€ Euro</option>
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="cssmenu">
+                        <ul>
+                            <li class="active"><a href="login.html">Account</a></li> |
+                            <li><a href="checkout.html">Wishlist</a></li> |
+                            <li><a href="checkout.html">Checkout</a></li> |
+                            <li><a href="login.html">Log In</a></li> |
+                            <li><a href="register.html">Sign Up</a></li>
                         </ul>
-                    </nav>
+                    </div>
+                    <div class="clear"></div>
                 </div>
             </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-                </div>
-            </div>
-        </footer>
+            <div class="header-bottom">
+                <div class="wrap">
+                    <div class="header-bottom-left">
+                        <div class="logo">
+                            <a href="index.html"><img src="~/Images/Test_Images/logo.png" alt="" /></a>
+                        </div>
+                        <div class="menu">
+                            <ul class="megamenu skyblue">
+                                <li class="active grid"><a href="index.html">Home</a></li>
+                                <li>
+                                    <a class="color5" href="#">Products</a>
+                                    <div class="megapanel">
+                                        <div class="col1">
+                                            <div class="h_nav">
+                                                <h4>Whisky</h4>
+                                                <ul>
+                                                    <li><a href="mens.html">Scottish</a></li>
+                                                    <li><a href="mens.html">Irishr</a></li>
+                                                    <li><a href="mens.html">Other</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col1">
+                                            <div class="h_nav">
+                                                <h4>Souveniers</h4>
+                                                <ul>
+                                                    <li><a href="mens.html">misc</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col1">
+                                            <div class="h_nav">
+                                                <h4>Retailers</h4>
+                                                <ul>
+                                                    <li><a href="mens.html">Christmas package</a></li>
+                                                    <li><a href="mens.html">Bulk orders</a></li>
+                                                    <li><a href="mens.html">Trial deal</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a class="color6" href="other.html">Other</a></li>
+                                <li><a class="color7" href="other.html">Purchase</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="header-bottom-right">
+                        <div class="search">
+                            <input type="text" name="s" class="textbox" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                            <input type="submit" value="Subscribe" id="submit" name="submit">
+                            <div id="response"> </div>
+                        </div>
+                        <div class="tag-list">
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+                            <ul class="icon1 sub-icon1 profile_img">
+                                <li>
+                                    <a class="active-icon c2" href="#"> </a>
+                                    <ul class="sub-icon1 list">
+                                        <li><h3>No Products</h3><a href=""></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="last"><li><a href="#">Cart(0)</a></li></ul>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            @RenderBody()
+           
+            <footer>
+                <div class="footer">
+                    <div class="footer-top">
+                        <div class="wrap">
+                            <div class="section group example">
+                                <div class="col_1_of_2 span_1_of_2">
+                                    <ul class="f-list">
+                                        <li><img src="~/Images/Test_Images/2.png"><span class="f-text">Free Shipping on orders over £100</span><div class="clear"></div></li>
+                                    </ul>
+                                </div>
+                                <div class="col_1_of_2 span_1_of_2">
+                                    <ul class="f-list">
+                                        <li><img src="~/Images/Test_Images/3.png"><span class="f-text">Call us! (+44) 111 666 444 </span><div class="clear"></div></li>
+                                    </ul>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-middle">
+                        <div class="wrap">
+                            <div class="section group example">
+                                <div class="col_1_of_f_1 span_1_of_f_1">
+                                    <div class="section group example">
+                                        <div class="col_1_of_f_2 span_1_of_f_2">
+
+                                        </div>
+                                        <div class="col_1_of_f_2 span_1_of_f_2">
+                                            <h3>Information</h3>
+                                            <ul class="f-list1">
+                                                <li><a href="#">Whisky wiki </a></li>
+                                                <li><a href="#">About us </a></li>
+                                                <li><a href="#">Contact form</a></li>
+                                                <li><a href="#">Careers </a></li>
+                                                <li><a href="#">Business opportunities </a></li>
+                                                <li><a href="#">Our clients</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="col_1_of_f_1 span_1_of_f_1">
+                                    <div class="section group example">
+                                        <div class="col_1_of_f_2 span_1_of_f_2">
+                                            <div class="company_address">
+                                                <h3>Contact us</h3>
+                                                <p>399 High Street,</p>
+                                                <p>Dundee, Scotland,</p>
+                                                <p>U.K</p>
+                                                <p>Phone:(+44) 111 666 444</p>
+                                                <p>Fax: (000) 000 00 00 0</p>
+                                                <p>Email: <span>mail[at]whiskygalore.com</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="col_1_of_f_2 span_1_of_f_2">
+
+
+
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <div class="wrap">
+                            <div class="copy">
+                                <p>© 2014 Template by <a href="http://w3layouts.com" target="_blank">w3layouts</a></p>
+                            </div>
+                            <div class="f-list2">
+                                <ul>
+                                    <li class="active"><a href="about.html">About Us</a></li> |
+                                    <li><a href="delivery.html">Delivery & Returns</a></li> |
+                                    <li><a href="delivery.html">Terms & Conditions</a></li> |
+                                    <li><a href="contact.html">Contact Us</a></li>
+                                </ul>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </body>
 </html>
