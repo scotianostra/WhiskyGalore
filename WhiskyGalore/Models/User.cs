@@ -5,52 +5,56 @@ using System.Web;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using WhiskyGalore.Libs;
+using System.Diagnostics;
+using System.ComponentModel;
+using System.Data;
 
-namespace WhiskyGaloreAdmin.Models
+namespace WhiskyGalore.Models
 {
     public class User
     {
         public enum AccountType
         {
-            Administrator = 1,
-            Manager,
-            Retailer,
-            Consumer,
-            Warehouse
+            Personal = 1,
+            Business
         }
 
-        public string username { get; set; }
+        [DisplayName("Username*")]
+        public string username{ get; set; }
+        [DisplayName("Password*")]
         public string password { get; set; }
-        public int[] acntType { get; set; }
-        public AccountType type { get; set; }
-        private String con_str = ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString;
-        //private MySqlConnection connection;
+        [DisplayName("E-Mail*")]
+        public string email { get; set; }
+        [DisplayName("Type of Account*")]
+        public AccountType accountType { get; set; }
 
-        public bool insert(string username, string password)
+
+        private String con_str = ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString.ToString();
+
+        public void registerUser(User user)
         {
-            using (MySqlConnection cn = new MySqlConnection(con_str))
+            using (MySqlConnection con = new MySqlConnection(con_str))
             {
-                try
+               
+                con.Open();
+                using (MySqlCommand cmd = new MySqlCommand("registerUser", con))
                 {
-                    // Here we already start using parameters in the query to prevent
-                    // SQL injection.
-                    string query = "insert into USERNAME (username, password) values (@username,@password);";
-                    cn.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, cn))
-                    {
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", Encryption.Encrypt(password));
-                        cmd.ExecuteNonQuery();
-                    }
-                    return true;
-                }
-                catch (MySqlException)
-                {
-                    return false;
+                    cmd.Parameters.AddWithValue("@username", user.username);
+                    cmd.Parameters.AddWithValue("@password", Encryption.Encrypt(user.password));
+                    cmd.Parameters.AddWithValue("@accountType", user.accountType);
+
+                    cmd.ExecuteNonQuery();
+
+                    con.Close();
                 }
             }
         }
+                    
+               
+            
+        }
 
     }
-}
+    

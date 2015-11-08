@@ -93,3 +93,8 @@ Supports Thumbs: true
 	width: 120px;
 	height: auto;
 }
+.centre-div {    
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
+}
