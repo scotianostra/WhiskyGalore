@@ -11,7 +11,7 @@ namespace WhiskyGalore.Controllers
     public class RegisterController : Controller
     {
         //
-        // GET: /Register/
+        // GET: /Register
 
         public ActionResult Register()
         {
@@ -20,13 +20,19 @@ namespace WhiskyGalore.Controllers
 
         
 
-        // POST: /Register/NewUser
+        // POST: /Register
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult NewUser(User user)
+        public ActionResult Register(User user)
         {
-            
-            user.registerUser(user);
+            if (ModelState.IsValid)
+            {
+                user.registerUser(user);
+            }
+            else
+            {
+                return View(user);
+            }
 
             return View();
         }

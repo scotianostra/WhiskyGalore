@@ -98,3 +98,6 @@ Supports Thumbs: true
      margin-left: auto;
      margin-right: auto;
 }
+.validation-summary-errors body{
+    color: red;
+}
