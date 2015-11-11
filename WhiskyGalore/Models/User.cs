@@ -63,6 +63,48 @@ namespace WhiskyGalore.Models
             }
         }
 
+        public void completeConsumer(User user)
+        {
+            using (MySqlConnection con = new MySqlConnection(con_str))
+            {
+
+                con.Open();
+                using (MySqlCommand cmd = new MySqlCommand("completeConsumer", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    //params for insert into contact
+                    cmd.Parameters.AddWithValue("@title", user.title.ToString());
+                    cmd.Parameters.AddWithValue("@forename", user.forename);
+                    cmd.Parameters.AddWithValue("@surname", user.surname);
+                    cmd.Parameters.AddWithValue("@firstNumber", user.firstNumber);
+                    if (s.secondaryNumber != null)
+                    {
+                        cmd.Parameters.AddWithValue("@secondaryNumber", s.secondaryNumber);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@secondaryNumber", null);
+                    }
+                    cmd.Parameters.AddWithValue("@email", s.email);
+                    if (s.fax != null)
+                    {
+                        cmd.Parameters.AddWithValue("@fax", s.fax);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@fax", null);
+                    }
+
+
+
+                    cmd.ExecuteNonQuery();
+
+                    con.Close();
+                }
+            }
+        }
+
         public Boolean loginUser(User user)
         {
             using (MySqlConnection con = new MySqlConnection(con_str))

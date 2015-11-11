@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using WhiskyGalore.Models
+
+@model WhiskyGalore.Models.User
+
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -44,13 +48,31 @@
                         <div class="clear"></div>
                     </div>
                     <div class="cssmenu">
-                        <ul>
-                            <li class="active"><a href="login.html">Account</a></li> |
-                            <li><a href="checkout.html">Wishlist</a></li> |
-                            <li><a href="checkout.html">Checkout</a></li> |
-                            <li><a href="login.html">Log In</a></li> |
-                            <li><a href="register.html">Sign Up</a></li>
-                        </ul>
+                        
+                            
+                           @{
+                               if (Session["loggedIn"] == null)
+                               {
+                                <ul>
+                                    <li> @Html.ActionLink("Log In", "Login", "Login", new { area = "" }, new { @style = "font-size: 16px;" })</li>|
+                                    <li> @Html.ActionLink("Register", "Register", "Register", new { area = "" }, new { @style = "font-size: 16px;" })</li>|
+                                    <li> @Html.ActionLink("Checkout", "Checkout", "Checkout", new { area = "" }, new { @style = "font-size: 16px;" })</li>
+                                </ul>
+
+                               }
+                               if (Session["loggedIn"] != null)
+                               {
+                                <ul>
+                                    <li>@Html.ActionLink("Log Out", "LogOut", "Login", new { area = "" }, new { @style = "font-size: 16px;" })</li>|
+                                    <li>@Html.ActionLink(Session["loginName"].ToString(), "Account", "Account", new { area = "" }, new { @style = "font-size: 16px;" })</li>|
+                                    <li>@Html.ActionLink("Checkout", "Checkout", "Checkout", new { area = "" }, new { @style = "font-size: 16px;" })</li>
+                                </ul>
+
+                               }
+}
+                           
+                            
+                        
                     </div>
                     <div class="clear"></div>
                 </div>

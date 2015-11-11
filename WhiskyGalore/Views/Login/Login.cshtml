@@ -13,9 +13,9 @@
 
     @using (Html.BeginForm("Login", "Login", FormMethod.Post))
     {
-        <div class="validation-summary-errors">
-            @Html.ValidationSummary(true)
-        </div>
+       
+            @Html.ValidationSummary(true, "", new { @style = "color:red;!important" })
+        
         @Html.AntiForgeryToken()
         <div class="form-group">
             @Html.LabelFor(model => model.username, new { @class = "control-label" })

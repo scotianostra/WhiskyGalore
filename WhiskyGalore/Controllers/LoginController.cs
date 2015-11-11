@@ -30,6 +30,15 @@ namespace WhiskyGalore.Controllers
 
                 if (user.loginUser(user))
                 {
+                    String loginName = user.username;
+                    String account = user.accountType.ToString();
+                    String loggedIn = user.loggedIn.ToString();
+
+                    //Store in session
+                    Session["loginName"] = loginName;
+                    Session["account"] = account;
+                    Session["loggedIn"] = loggedIn;
+
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -46,6 +55,18 @@ namespace WhiskyGalore.Controllers
             }
 
            
+        }
+
+        //
+        // GET: /LogOut
+
+        
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            Session.Abandon();
+
+            return RedirectToAction("Index", "Home");
         }
 
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,33 +7,30 @@ using WhiskyGalore.Models;
 
 namespace WhiskyGalore.Controllers
 {
-    public class RegisterController : Controller
+    public class DetailsController : Controller
     {
-        //
-        // GET: /Register
 
+        // GET: /Details/Complete
         public ActionResult Register()
         {
             return View(new User());
         }
-
         
-
-        // POST: /Register
+        // POST: /Details/Complete
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(User user)
+        public ActionResult Complete(User user)
         {
             if (ModelState.IsValid)
             {
-                user.registerUser(user);
-                return RedirectToAction("Login", "Login");
+                user.completeUser(user);
             }
             else
             {
+
                 return View(user);
             }
+            return RedirectToAction("Complete");
         }
-
     }
 }
